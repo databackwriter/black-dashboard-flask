@@ -94,7 +94,7 @@ $ pip3 install -r requirements.txt
 
 ```bash
 $ export FLASK_APP=run.py
-$ export FLASK_ENV=development
+$ export FLASK_DEBUG=development
 ```
 
 <br />
@@ -128,11 +128,11 @@ $ pip3 install -r requirements.txt
 ```bash
 $ # CMD 
 $ set FLASK_APP=run.py
-$ set FLASK_ENV=development
+$ set FLASK_DEBUG=development
 $
 $ # Powershell
 $ $env:FLASK_APP = ".\run.py"
-$ $env:FLASK_ENV = "development"
+$ $env:FLASK_DEBUG = "development"
 ```
 
 <br />
