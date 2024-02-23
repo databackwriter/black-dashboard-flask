@@ -15,6 +15,11 @@ def index():
 
     return render_template('home/index.html', segment='index')
 
+@blueprint.route('/vmd_timestamp')
+@login_required
+def vmd_timestamp():
+    print("velocity")
+    return render_template('home/index.html', segment='index')
 
 @blueprint.route('/<template>')
 @login_required
