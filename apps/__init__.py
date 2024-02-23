@@ -34,7 +34,7 @@ def configure_database(app):
     def shutdown_session(exception=None):
         db.session.remove()
 
-from apps.authentication.oauth import github_blueprint
+from apps.authentication.oauth import github_blueprint  # noqa: E402
 
 def create_app(config):
     app = Flask(__name__)
