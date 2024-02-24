@@ -4,7 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from apps.home import blueprint
-from flask import render_template, request
+from flask import jsonify, render_template, request
 from flask_login import login_required
 from jinja2 import TemplateNotFound
 
@@ -15,11 +15,15 @@ def index():
 
     return render_template('home/index.html', segment='index')
 
-@blueprint.route('/vmd_timestamp')
+@blueprint.route('/mr_anglepoise', methods=['GET', 'POST'])
 @login_required
-def vmd_timestamp():
+def mr_anglepoise():
+    # num = float(request.form.get('number', 0)) 
+    # square = num ** 2 
     print("velocity")
-    return render_template('home/index.html', segment='index')
+    data = {'square': 64} 
+    data = jsonify(data) 
+    return data 
 
 @blueprint.route('/<template>')
 @login_required

@@ -1,0 +1,47 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Tables {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title"> Simple Light Control</h4>
+          </div>
+          <form id="form">
+            <div class="card-body">
+              <!-- <a href="mr_anglepoise"> -->
+                <button class="btn btn-fill btn-primary" type="submit">
+                  <i class="tim-icons icon-bulb-63"></i><br />Light
+                </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<script> 
+  $('#form').on('submit', function(e){ 
+    // var number = $('#num').val(); 
+    e.preventDefault(); 
+    $.ajax({ 
+      url: 'http://127.0.0.1:5000/mr_anglepoise', 
+      // data: {'number': number}, 
+      method: 'POST', 
+      success: function(data) { 
+        // $('#num').val(''); 
+        $('#square').html('Square of is ' + data['square']) 
+      } 
+    }); 
+  }); 
+</script> 
+{% block javascripts %}{% endblock javascripts %}
