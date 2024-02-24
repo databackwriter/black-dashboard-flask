@@ -14,14 +14,16 @@
           <div class="card-header">
             <h4 class="card-title"> Simple Light Control</h4>
           </div>
-          <form id="form">
+          <!-- <form id="form" action=""> -->
             <div class="card-body">
               <!-- <a href="mr_anglepoise"> -->
-                <button class="btn btn-fill btn-primary" type="submit">
-                  <i class="tim-icons icon-bulb-63"></i><br />Light
-                </button>
+                <a href="mr_anglepoise">
+                  <button class="btn btn-fill btn-primary" type="submit">
+                    <i class="tim-icons icon-bulb-63"></i><br />Light
+                  </button>
+              </a>
             </div>
-          </form>
+          <!-- </form> -->
         </div>
       </div>
     </div>
@@ -29,12 +31,12 @@
 
 {% endblock content %}
 
-<script> 
+<!-- <script> 
   $('#form').on('submit', function(e){ 
     // var number = $('#num').val(); 
     e.preventDefault(); 
     $.ajax({ 
-      url: 'http://127.0.0.1:5000/mr_anglepoise', 
+      url: '/mr_anglepoise', 
       // data: {'number': number}, 
       method: 'POST', 
       success: function(data) { 
@@ -43,5 +45,5 @@
       } 
     }); 
   }); 
-</script> 
+</script>  -->
 {% block javascripts %}{% endblock javascripts %}

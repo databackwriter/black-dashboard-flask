@@ -4,6 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from apps.home import blueprint
+from apps.services.hue import toggle_light
 from flask import jsonify, render_template, request
 from flask_login import login_required
 from jinja2 import TemplateNotFound
@@ -18,12 +19,10 @@ def index():
 @blueprint.route('/mr_anglepoise', methods=['GET', 'POST'])
 @login_required
 def mr_anglepoise():
-    # num = float(request.form.get('number', 0)) 
-    # square = num ** 2 
-    print("velocity")
-    data = {'square': 64} 
-    data = jsonify(data) 
-    return data 
+
+    y = toggle_light(24)
+    print(y)
+    return route_template('/lights') 
 
 @blueprint.route('/<template>')
 @login_required
