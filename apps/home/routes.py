@@ -16,17 +16,17 @@ def index():
 
     return render_template('home/index.html', segment='index')
 
-@blueprint.route('/mr_anglepoise/<id>', methods=['GET', 'POST'])
+@blueprint.route('/hue_light_on/<id>', methods=['GET', 'POST'])
 @login_required
-def mr_anglepoise(id):
+def hue_light_on(id):
 
     y = toggle_light(id)
     print(y)
-    return route_template('/lights') 
+    return lights_table()
 
 @blueprint.route('/lights', methods=['GET', 'POST'])
 @login_required
-def html_table():
+def lights_table():
     lights = light_list()
     segment = get_segment(request)
     return render_template('home/lights.html',  
