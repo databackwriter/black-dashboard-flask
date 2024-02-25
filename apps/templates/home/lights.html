@@ -15,13 +15,51 @@
             <h4 class="card-title"> Simple Light Control</h4>
           </div>
             <div class="card-body">
-                <a href="mr_anglepoise">
+                <a href="/mr_anglepoise/24">
                   <button class="btn btn-fill btn-primary" type="submit">
                     <i class="tim-icons icon-bulb-63"></i><br />Light
                   </button>
               </a>
             </div>
-
+            <div class="table-responsive">
+<table class="table tablesorter " id="">
+  <thead class=" text-primary">
+    <tr>
+      <th hidden>id_</th>
+      <th>name</th>
+      <th>is_on</th>
+      <th>toggle</th>
+      <!-- <th>bri</th>
+      <th>hue</th>
+      <th>sat</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    {% for light in lights %}
+      <tr>
+          <td hidden>{{light.id_}}</td>
+          <td>{{light.name}}</td>
+          <td>{{light.is_on}}</td>
+          <!-- <td>
+            <label> -->
+                {% if light.is_on %}
+                <!-- <td>Y</td> -->
+                  <td><input type="checkbox" class="l" checked></td>
+                {% else %}
+                <!-- <td>N</td> -->
+                  <td><input type="checkbox" class="l"></td>
+                {% endif %}
+                <!-- <span></span>
+            </label>
+          </td> -->
+          <!-- <td>{{light.bri}}</td>
+          <td>{{light.hue}}</td>
+          <td>{{light.sat}}</td> -->
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+            </div>
         </div>
       </div>
     </div>

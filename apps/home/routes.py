@@ -4,7 +4,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from apps.home import blueprint
-from apps.services.hue import toggle_light
+from apps.services.hue import toggle_light, light_list
 from flask import jsonify, render_template, request
 from flask_login import login_required
 from jinja2 import TemplateNotFound
@@ -16,13 +16,25 @@ def index():
 
     return render_template('home/index.html', segment='index')
 
-@blueprint.route('/mr_anglepoise', methods=['GET', 'POST'])
+@blueprint.route('/mr_anglepoise/<id>', methods=['GET', 'POST'])
 @login_required
-def mr_anglepoise():
+def mr_anglepoise(id):
 
-    y = toggle_light(24)
+    y = toggle_light(id)
     print(y)
     return route_template('/lights') 
+
+@blueprint.route('/lights', methods=['GET', 'POST'])
+@login_required
+def html_table():
+    lights = light_list()
+    segment = get_segment(request)
+    return render_template('home/lights.html',  
+                        #    tables=[df.to_html(classes=['tablesorter', 'text-primary'], border=None).replace("dataframe ", "table ")], 
+                        #    titles=df.columns.values, 
+                            titles = ['sdk', 'id_', 'name', 'is_on', 'bri', 'hue', 'sat'],
+                            lights = lights,
+                            segment=segment)
 
 @blueprint.route('/<template>')
 @login_required
