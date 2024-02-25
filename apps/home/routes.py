@@ -5,7 +5,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 from apps.home import blueprint
 from apps.services.hue import toggle_light, light_list
-from flask import jsonify, render_template, request
+from flask import render_template, request
 from flask_login import login_required
 from jinja2 import TemplateNotFound
 
@@ -25,16 +25,18 @@ def hue_light_on(id):
     return lights_table()
 
 @blueprint.route('/lights', methods=['GET', 'POST'])
+@blueprint.route('/lights/<id>', methods=['GET', 'POST'])
 @login_required
-def lights_table():
+def lights_table(id = 0):
+    if int(id) > 0: 
+        toggle_light(id)
     lights = light_list()
-    segment = get_segment(request)
+    # segment = get_segment(request)
     return render_template('home/lights.html',  
                         #    tables=[df.to_html(classes=['tablesorter', 'text-primary'], border=None).replace("dataframe ", "table ")], 
                         #    titles=df.columns.values, 
                             titles = ['sdk', 'id_', 'name', 'is_on', 'bri', 'hue', 'sat'],
-                            lights = lights,
-                            segment=segment)
+                            lights = lights)
 
 @blueprint.route('/<template>')
 @login_required
@@ -54,7 +56,7 @@ def route_template(template):
     except TemplateNotFound:
         return render_template('home/page-404.html'), 404
 
-    except:
+    except:  # noqa: E722
         return render_template('home/page-500.html'), 500
 
 
@@ -70,5 +72,5 @@ def get_segment(request):
 
         return segment
 
-    except:
+    except:  # noqa: E722
         return None

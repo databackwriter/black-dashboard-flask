@@ -44,7 +44,7 @@
             <label> -->
                 {% if light.is_on %}
                 <!-- <td>Y</td> -->
-                  <td><input type="checkbox" class="l" checked></td>
+                <td><input onchange="window.open('/lights/24', '_self')" type="checkbox" class="l" checked></td>
                 {% else %}
                 <!-- <td>N</td> -->
                   <td><input type="checkbox" class="l"></td>
